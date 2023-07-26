@@ -11,8 +11,8 @@ from .models import Author, Tag, Quote
 
 # Create your views here.
 def index(request):
-    quotes = Quote.objects.all()
-    return render(request, "hw_ten_app/index.html", {"quotes": quotes})
+    quote = Quote.objects.all()
+    return render(request, "hw_ten_app/index.html", {"quote": quote})
 
 
 @login_required
@@ -59,8 +59,8 @@ def detail(request, author_id):
 
 
 def authors(request):
-    authors = Author.objects.all()
-    return render(request, 'hw_ten_app/authors.html', {"authors": authors})
+    author = Author.objects.all()
+    return render(request, 'hw_ten_app/authors.html', {"author": author})
 
 
 @login_required

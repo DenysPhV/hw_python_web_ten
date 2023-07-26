@@ -24,9 +24,9 @@ def signup_user(request):
             form.save()
             return redirect(to='hw_ten_app:main')
         else:
-            return render(request, 'users/signup.html', {"form": form})
+            return render(request, 'users/signup.html', {'form': form})
 
-    return render(request, 'users/signup.html', {"form": RegisterForm()})
+    return render(request, 'users/signup.html', {'form': RegisterForm()})
 
 
 def login_user(request):
