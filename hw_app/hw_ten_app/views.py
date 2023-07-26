@@ -32,7 +32,7 @@ def fill_db(request):
         results = json.load(fh)
         unique_tags = set()
         for result in results:
-            [unique_tags.add(tag) for tag in results['tags']]
+            [unique_tags.add(current_tag) for current_tag in result['tags']]
 
         for unique_tag in unique_tags:
             new_tag = Tag(name=unique_tag)
@@ -46,7 +46,8 @@ def fill_db(request):
             new_quote.save()
 
             choice_tags = Tag.objects.filter(name__in=result['tags'])
-            [new_quote.tags.add(tag) for tag in choice_tags.iterator()]
+
+            [new_quote.tags.add(choice_tag) for choice_tag in choice_tags.iterator()]
             new_quote.save()
 
     return render(request, 'hw_ten_app/index.html', {"quotes": quotes})
@@ -103,7 +104,8 @@ def quote(request):
             new_quote.save()
 
             choice_tags = Tag.objects.filter(name__in=request.POST.getlist('tags'))
-            [new_quote.tags.add(tag) for tag in choice_tags.iterator()]
+
+            [new_quote.tags.add(choice_tag) for choice_tag in choice_tags.iterator()]
             new_quote.save()
 
             quotes = Quote.objects.all()

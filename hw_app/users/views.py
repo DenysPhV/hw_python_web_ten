@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.views import View
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -24,9 +24,9 @@ def signup_user(request):
             form.save()
             return redirect(to='hw_ten_app:main')
         else:
-            return render(request, 'users/signup.html', context={"form": form})
+            return render(request, 'users/register.html', context={"form": form})
 
-    return render(request, 'users/signup.html', context={"form": RegisterForm()})
+    return render(request, 'users/register.html', context={"form": RegisterForm()})
 
 
 def login_user(request):
